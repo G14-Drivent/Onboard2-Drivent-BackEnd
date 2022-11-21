@@ -1,11 +1,12 @@
 import { prisma } from "@/config";
 import { CreateTicketParams } from "@/protocols";
+import { Ticket, TicketType } from "@prisma/client";
 
 async function findManyTypes() {
   return prisma.ticketType.findMany();
 }
 
-async function findOneByEnrollment(enrollmentId: number) {
+async function findOneByEnrollment(enrollmentId: number): Promise<Ticket & { TicketType: TicketType }> {
   return prisma.ticket.findFirst({
     where: { enrollmentId },
     include: {
@@ -14,7 +15,7 @@ async function findOneByEnrollment(enrollmentId: number) {
   });
 }
 
-async function findOneById(id: number) {
+async function findOneById(id: number): Promise<Ticket & { TicketType: TicketType }> {
   return prisma.ticket.findUnique({
     where: { id },
     include: {

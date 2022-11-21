@@ -9,7 +9,7 @@ async function getAllTicketTypes(): Promise<TicketType[]> {
   return types;
 }
 
-async function getTicketByUser(userId: number): Promise<Ticket> {
+async function getTicketByUser(userId: number): Promise<Ticket & { TicketType: TicketType }> {
   const { id } = await enrollmentsService.getOneWithAddressByUserId(userId);
 
   const ticket = await ticketsRepository.findOneByEnrollment(id);
@@ -18,7 +18,7 @@ async function getTicketByUser(userId: number): Promise<Ticket> {
   return ticket;
 }
 
-async function getTicketById(id: number): Promise<Ticket> {
+async function getTicketById(id: number): Promise<Ticket & { TicketType: TicketType }> {
   const ticket = await ticketsRepository.findOneById(id);
   if(!ticket) throw notFoundError();
 
