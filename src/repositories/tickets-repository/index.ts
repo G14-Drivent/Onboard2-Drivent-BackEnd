@@ -15,7 +15,7 @@ async function findOneByEnrollment(enrollmentId: number) {
 }
 
 async function findOneById(id: number) {
-  return prisma.ticket.findFirst({
+  return prisma.ticket.findUnique({
     where: { id },
     include: {
       TicketType: true,

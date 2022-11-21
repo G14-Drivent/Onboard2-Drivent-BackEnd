@@ -4,12 +4,8 @@ import httpStatus from "http-status";
 import ticketsService from "@/services/tickets-service";
 
 export async function getTicketTypes(req: AuthenticatedRequest, res: Response) {
-  try {
-    const ticketTypes = await ticketsService.getAllTicketTypes();
-    return res.status(httpStatus.OK).send(ticketTypes);
-  } catch (error) {
-    return res.sendStatus(httpStatus.INTERNAL_SERVER_ERROR);
-  }
+  const ticketTypes = await ticketsService.getAllTicketTypes();
+  return res.status(httpStatus.OK).send(ticketTypes);
 }
 
 export async function getTicket(req: AuthenticatedRequest, res: Response) {

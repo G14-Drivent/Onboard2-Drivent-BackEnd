@@ -40,3 +40,7 @@ export type CreateTicketParams = {
 };
 
 export type CreateTicketBody = Pick<Ticket, "ticketTypeId">;
+
+export type GetTicketPaymentQuery = {
+  ticketId: number
+};
